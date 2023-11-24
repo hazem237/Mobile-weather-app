@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:weather_flutter_app/pages/home_screen/widgets/app_bar_widget.dart';
+import 'package:weather_flutter_app/pages/home_screen/widgets/background_widget.dart';
+import 'package:weather_flutter_app/pages/home_screen/widgets/weather_info_widget.dart';
 import 'package:weather_flutter_app/services/current_weather_service.dart';
 import 'package:weather_flutter_app/shared_widgets/drawer.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,8 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final WeatherService _weatherService = WeatherService();
-
-  WeatherData? weatherData;
+  late WeatherData weatherData;
 
   @override
   void initState() {
@@ -22,43 +25,27 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> fetchWeather() async {
     try {
-      final data = await _weatherService.fetchWeatherData('Jerusalem'); 
+      final data = await _weatherService.fetchWeatherData('Jerusalem');
       setState(() {
         weatherData = data;
       });
     } catch (e) {
       print('Error fetching weather: $e');
+      // Handle error
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-      ),
+      extendBodyBehindAppBar: true,
+      appBar: buildAppBar(),
       drawer: AppDrawer(),
-      body: Center(
-        child: weatherData != null
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                 weatherData!.icon.isNotEmpty
-                      ? SizedBox(
-                          width: 120, 
-                          height: 120, 
-                          child: Image.network(
-                            'https:${weatherData!.icon}',
-                            fit: BoxFit.contain, 
-                          ),
-                        )
-                      : const Text('Weather Icon Not Available'),
-                  Text('City: ${weatherData!.city}'),
-                  Text('Temperature: ${weatherData!.temperature}°C'),
-                  Text('Weather Condition: ${weatherData!.weatherCondition}'),
-                ],
-              )
-            : const Text("Oops, current weather is not available"),
+      body: Stack(
+        children: [
+          buildBackground(),
+          buildWeatherInfo(weatherData),
+        ],
       ),
     );
   }
