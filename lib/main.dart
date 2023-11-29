@@ -21,7 +21,7 @@ class WeatherApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
-        '/listOfPlaces': (context) => ListOfPlacesScreen(),
+        '/listOfPlaces': (context) => ListOfPlacesScreen(cityNames: ['Amman' , 'London' , 'Paris'],),
         '/cityDetailedWeather': (context) => CityDetailedWeatherScreen(),
         '/cityHourlyWeather': (context) => CityHourlyWeatherScreen(),
       },
