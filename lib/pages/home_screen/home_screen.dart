@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_flutter_app/pages/home_screen/widgets/app_bar_widget.dart';
+import 'package:weather_flutter_app/shared_widgets/app_bar_widget.dart';
 import 'package:weather_flutter_app/pages/home_screen/widgets/background_widget.dart';
 import 'package:weather_flutter_app/pages/home_screen/widgets/weather_info_widget.dart';
 import 'package:weather_flutter_app/services/current_weather_service.dart';
@@ -40,11 +40,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: buildAppBar(),
-      drawer: AppDrawer(),
+      drawer: AppDrawer(), //Found in lib/shared_widgets
       body: Stack(
         children: [
-          buildBackground(),
-          buildWeatherInfo(weatherData),
+          buildBackground(), // Found in home_screen/widgets
+          buildWeatherInfo(weatherData), // Found in home_screen/widgets
         ],
       ),
     );

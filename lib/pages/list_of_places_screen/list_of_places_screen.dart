@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weather_flutter_app/pages/list_of_places_screen/widgets/city_card.dart';
+import 'package:weather_flutter_app/shared_widgets/app_bar_widget.dart';
 import 'package:weather_flutter_app/shared_widgets/drawer.dart';
 import 'package:weather_flutter_app/services/current_weather_service.dart';
 
@@ -39,50 +41,20 @@ class _ListOfPlacesScreenState extends State<ListOfPlacesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('List of Places'),
-      ),
+      appBar: buildAppBar(),
       drawer: AppDrawer(),
-      body: weatherDataList != null
-          ? ListView.builder(
-              itemCount: weatherDataList.length,
-              itemBuilder: (context, index) {
-                return CityCard(weatherData: weatherDataList[index]);
-              },
-            )
-          : const Center(
-              child: CircularProgressIndicator(),
-            ),
-    );
-  }
-}
-
-// Update the CityCard widget to accept WeatherData
-class CityCard extends StatelessWidget {
-  final WeatherData weatherData;
-
-  const CityCard({super.key, required this.weatherData});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(weatherData.city),
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('${weatherData.temperature.toString()}°C'),
-          Row(
-            children: [
-              Text(weatherData.weatherCondition),
-              const SizedBox(width: 30),
-              Image.network(
-                'https:${weatherData.icon}',
-                width: 20,
-                height: 20,
+      body: Container(
+        // color: Color.fromARGB(255, 212, 212, 212), // Set your desired background color here
+        child: weatherDataList != null
+            ? ListView.builder(
+                itemCount: weatherDataList.length,
+                itemBuilder: (context, index) {
+                  return CityCard(weatherData: weatherDataList[index]);
+                },
+              )
+            : const Center(
+                child: CircularProgressIndicator(),
               ),
-            ],
-          ),
-        ],
       ),
     );
   }
