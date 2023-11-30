@@ -14,15 +14,15 @@ class ListOfPlacesScreen extends StatefulWidget {
 }
 
 class _ListOfPlacesScreenState extends State<ListOfPlacesScreen> {
-  late List<WeatherData> weatherDataList;
+  late Future<List<WeatherData>> _weatherDataFuture;
 
   @override
   void initState() {
     super.initState();
-    fetchWeatherForCities();
+    _weatherDataFuture = fetchWeatherForCities();
   }
 
-  Future<void> fetchWeatherForCities() async {
+  Future<List<WeatherData>> fetchWeatherForCities() async {
     List<WeatherData> data = [];
     for (String city in widget.cityNames) {
       try {
@@ -33,9 +33,7 @@ class _ListOfPlacesScreenState extends State<ListOfPlacesScreen> {
         // Handle error for this city
       }
     }
-    setState(() {
-      weatherDataList = data;
-    });
+    return data;
   }
 
   @override
@@ -43,18 +41,26 @@ class _ListOfPlacesScreenState extends State<ListOfPlacesScreen> {
     return Scaffold(
       appBar: buildAppBar(),
       drawer: AppDrawer(),
-      body: Container(
-        // color: Color.fromARGB(255, 212, 212, 212), // Set your desired background color here
-        child: weatherDataList != null
-            ? ListView.builder(
-                itemCount: weatherDataList.length,
-                itemBuilder: (context, index) {
-                  return CityCard(weatherData: weatherDataList[index]);
-                },
-              )
-            : const Center(
-                child: CircularProgressIndicator(),
-              ),
+      body: FutureBuilder<List<WeatherData>>(
+        future: _weatherDataFuture,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                return CityCard(weatherData: snapshot.data![index]);
+              },
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }
