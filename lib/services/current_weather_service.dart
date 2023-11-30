@@ -30,7 +30,7 @@ class WeatherService {
 
   Future<WeatherData> fetchWeatherData(String city) async {
     final url = '$_baseUrl/current.json?key=$_apiKey&q=$city&aqi=no';
-
+  
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {

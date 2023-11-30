@@ -15,13 +15,15 @@ class WeatherApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Weather App',
-            theme: ThemeData(
-        fontFamily: 'Proxima', 
+      theme: ThemeData(
+        fontFamily: 'Proxima',
       ),
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
-        '/listOfPlaces': (context) => ListOfPlacesScreen(),
+        '/listOfPlaces': (context) => const ListOfPlacesScreen(
+              cityNames: ['Amman', 'Cairo', 'Beirut', 'Istanbul', 'Riyadh'],
+            ),
         '/cityDetailedWeather': (context) => CityDetailedWeatherScreen(),
         '/cityHourlyWeather': (context) => CityHourlyWeatherScreen(),
       },
