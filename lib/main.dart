@@ -3,9 +3,16 @@ import 'package:weather_flutter_app/pages/city_detailed_weather_screen/city_deta
 import 'package:weather_flutter_app/pages/city_hourly_weather_screen/city_hourly_weather_screen.dart';
 import 'package:weather_flutter_app/pages/home_screen/home_screen.dart';
 import 'package:weather_flutter_app/pages/list_of_places_screen/list_of_places_screen.dart';
+import 'package:weather_flutter_app/provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const WeatherApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => SelectedCityProvider(),
+      child: WeatherApp(),
+    ),
+  );
 }
 
 class WeatherApp extends StatelessWidget {
@@ -20,9 +27,9 @@ class WeatherApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeScreen(),
+        '/': (context) => HomeScreen(),
         '/listOfPlaces': (context) => const ListOfPlacesScreen(
-              cityNames: ['Amman', 'Cairo', 'Beirut', 'Istanbul', 'Riyadh'],
+              cityNames: ['Jerusalem', 'Cairo', 'Beirut', 'Amman', 'Riyadh'],
             ),
         '/cityDetailedWeather': (context) => CityDetailedWeatherScreen(),
         '/cityHourlyWeather': (context) => CityHourlyWeatherScreen(),
