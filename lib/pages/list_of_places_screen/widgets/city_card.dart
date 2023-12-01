@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_flutter_app/services/current_weather_service.dart';
+import 'package:weather_flutter_app/pages/list_of_places_screen/widgets/moreDetailsDialog.dart';
+
 
 class CityCard extends StatelessWidget {
   final WeatherData weatherData;
@@ -57,6 +59,18 @@ class CityCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
+                ),
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return MoreDetailsDialog(weatherData: weatherData);
+                      },
+                    );
+                  },
+                  child: const Text('More Details'),
                 ),
               ],
             ),
