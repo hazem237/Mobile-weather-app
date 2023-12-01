@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
               if (snapshot.hasData) {
                 return Stack(
                   children: [
-                    buildBackground(), // Found in home_screen/widgets
+                    buildBackground(context), // Found in home_screen/widgets
                     buildWeatherInfo(snapshot.data!), // Found in home_screen/widgets
                   ],
                 );
