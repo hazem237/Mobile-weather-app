@@ -56,13 +56,21 @@ class _CityCardState extends State<CityCard> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(
-                        'https:${widget.weatherData.icon}',
-                        width: 40,
-                        height: 40,
-                      ),
+                      Row(children: [
+                        Text(
+                          widget.weatherData.city,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                        Image.network(
+                          'https:${widget.weatherData.icon}',
+                          width: 40,
+                          height: 40,
+                        )
+                      ]),
                       const SizedBox(height: 8),
-                      Text(widget.weatherData.city),
                       const SizedBox(height: 4),
                       Text(widget.weatherData.weatherCondition),
                     ],

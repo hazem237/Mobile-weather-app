@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-PreferredSizeWidget? buildAppBar() {
+PreferredSizeWidget? buildAppBar(String page_title) {
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,
@@ -8,14 +8,15 @@ PreferredSizeWidget? buildAppBar() {
     leading: Builder(
       builder: (context) => IconButton(
         icon: const Icon(Icons.menu),
+        color: const Color.fromARGB(255, 83, 83, 83),
         onPressed: () => Scaffold.of(context).openDrawer(),
       ),
     ),
-    title: const Padding(
-      padding: EdgeInsets.only(left: 16.0),
+    title: Padding(
+      padding: const EdgeInsets.only(left: 16.0),
       child: Text(
-        'Home',
-        style: TextStyle(fontSize: 20, color: Colors.white),
+        page_title, 
+        style: const TextStyle(fontSize: 18, color: Color.fromARGB(255, 44, 44, 44)),
       ),
     ),
   );

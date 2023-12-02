@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
 
         return Scaffold(
           extendBodyBehindAppBar: true,
-          appBar: buildAppBar(),
+          appBar: buildAppBar('Home'),
           drawer: AppDrawer(),
           body: FutureBuilder<WeatherData>(
             future: _weatherService.fetchWeatherData(selectedCity),

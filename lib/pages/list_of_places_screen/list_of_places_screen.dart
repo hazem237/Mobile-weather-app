@@ -41,7 +41,7 @@ class _ListOfPlacesScreenState extends State<ListOfPlacesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar('List of places'),
       drawer: AppDrawer(),
       body: FutureBuilder<List<WeatherData>>(
         future: _weatherDataFuture,
