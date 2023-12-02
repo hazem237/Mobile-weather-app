@@ -22,6 +22,7 @@ class WeatherApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Weather App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Proxima',
       ),
