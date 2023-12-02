@@ -32,7 +32,6 @@ class _ListOfPlacesScreenState extends State<ListOfPlacesScreen> {
         data.add(weatherData);
       } catch (e) {
         print('Error fetching weather for $city: $e');
-        // Handle error for this city
       }
     }
     return data;

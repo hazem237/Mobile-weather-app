@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_flutter_app/pages/city_detailed_weather_screen/widget/day_card.dart';
-import 'package:weather_flutter_app/services/seven_days_weather.dart'; // Replace with your WeatherService file import
+import 'package:weather_flutter_app/services/seven_days_weather.dart';
 import 'package:weather_flutter_app/shared_widgets/app_bar_widget.dart';
 import 'package:weather_flutter_app/shared_widgets/drawer.dart';
 import 'package:weather_flutter_app/provider.dart';
@@ -12,7 +12,7 @@ class CityDetailedWeatherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectedCityProvider = Provider.of<SelectedCityProvider>(context);
-    final cityName = selectedCityProvider.selectedCity; // Get the selected city
+    final cityName = selectedCityProvider.selectedCity;
 
     return Scaffold(
       appBar: buildAppBar('Upcoming 7 Days'),
@@ -23,7 +23,7 @@ class CityDetailedWeatherScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Text(
-              '$cityName',
+              'City : $cityName',
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
