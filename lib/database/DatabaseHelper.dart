@@ -1,9 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:weather_flutter_app/database/models/city.dart';
 
-class DatabaseHelper {
+class DatabaseProvider extends ChangeNotifier {
+  static DatabaseProvider? _instance;
   static Database? _database;
-  final String tableName = 'cities';
+  final int version = 1;
+
+  DatabaseProvider._privateConstructor();
+
+  static DatabaseProvider get instance {
+    _instance ??= DatabaseProvider._privateConstructor();
+    return _instance!;
+  }
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -15,22 +25,32 @@ class DatabaseHelper {
   Future<Database> initDatabase() async {
     return openDatabase(
       join(await getDatabasesPath(), 'cities_database.db'),
-      onCreate: (db, version) {
-        return db.execute(
-          'CREATE TABLE $tableName(id INTEGER PRIMARY KEY, name TEXT, imagePath TEXT)',
-        );
+      onCreate: (db, version) async {
+        await db.execute('''
+          CREATE TABLE city (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            imagePath TEXT
+          )
+          ''');
       },
-      version: 1,
+      version: version,
     );
   }
 
   Future<int> insertCity(Map<String, dynamic> city) async {
     final db = await database;
-    return db.insert(tableName, city);
+    return db.insert('city', city);
   }
 
-  Future<List<Map<String, dynamic>>> getCities() async {
+  Future<List<City>> getCities() async {
     final db = await database;
-    return db.query(tableName);
+    List<Map<String, dynamic>> records = await db.query('city');
+    List<City> cities = [];
+    for (var record in records) {
+      City city = City.fromMap(record);
+      cities.add(city);
+    }
+    return cities;
   }
 }

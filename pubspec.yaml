@@ -70,6 +70,7 @@ flutter:
     - lib/assets/Cairo.jpg
     - lib/assets/Riyadh.jpg
     - lib/assets/drawerBackground.jpg
+    - lib/assets/cities.json
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

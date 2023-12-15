@@ -54,7 +54,7 @@ class WeatherService {
       final jsonData = jsonDecode(response.body);
       List<WeatherData> weatherDataList = [];
 
-      for (int i = 0; i < 7; i++) {
+      for (int i = 0; i < 3; i++) {
         weatherDataList.add(WeatherData.fromJson(jsonData, i));
       }
 
