@@ -43,6 +43,26 @@ class DatabaseProvider extends ChangeNotifier {
     return db.insert('city', city);
   }
 
+  Future<int> deleteCity(String cityName) async {
+    final db = await database;
+    return await db.delete(
+      'city',
+      where: 'name = ?',
+      whereArgs: [cityName],
+    );
+  }
+
+  Future<bool> checkCityExists(String cityName) async {
+    final db = await database;
+    List<Map<String, dynamic>> result = await db.query(
+      'city',
+      where: 'name = ?',
+      whereArgs: [cityName],
+    );
+
+    return result.isNotEmpty;
+  }
+
   Future<List<City>> getCities() async {
     final db = await database;
     List<Map<String, dynamic>> records = await db.query('city');

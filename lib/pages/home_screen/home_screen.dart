@@ -12,21 +12,22 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SelectedCityProvider>(
       builder: (context, selectedCityProvider, _) {
-        final WeatherService _weatherService = WeatherService();
+        final WeatherService weatherService = WeatherService();
         final String selectedCity = selectedCityProvider.selectedCity;
+        final String selectedImagePath = selectedCityProvider.selectedImagePath;
 
         return Scaffold(
           extendBodyBehindAppBar: true,
           appBar: buildAppBar('Home'),
           drawer: AppDrawer(),
           body: FutureBuilder<WeatherData>(
-            future: _weatherService.fetchWeatherData(selectedCity),
+            future: weatherService.fetchWeatherData(selectedCity),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Stack(
                   children: [
-                    buildBackground(context), // Found in home_screen/widgets
-                    buildWeatherInfo(snapshot.data!), // Found in home_screen/widgets
+                    buildBackground(context, selectedImagePath),
+                    buildWeatherInfo(snapshot.data!),
                   ],
                 );
               } else if (snapshot.hasError) {
@@ -34,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                   child: Text('Error fetching weather: ${snapshot.error}'),
                 );
               } else {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }

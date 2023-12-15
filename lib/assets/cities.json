@@ -1,46 +1,46 @@
 [
   {
     "name": "New York",
-    "photoPath": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ3f5FjLnlW-yQrSvrmPUzcF0s4loVvjOzqg&usqp=CAU"
+    "imagePath ": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ3f5FjLnlW-yQrSvrmPUzcF0s4loVvjOzqg&usqp=CAU"
   },
   {
     "name": "Tokyo",
-    "photoPath": "https://media.cntraveler.com/photos/60341fbad7bd3b27823c9db2/4:3/w_4624,h_3468,c_limit/Tokyo-2021-GettyImages-1208124099.jpg"
+    "imagePath ": "https://media.cntraveler.com/photos/60341fbad7bd3b27823c9db2/4:3/w_4624,h_3468,c_limit/Tokyo-2021-GettyImages-1208124099.jpg"
   },
   {
     "name": "Beijing",
-    "photoPath": "https://cdn.britannica.com/03/198203-050-138BB1C3/entrance-Gate-of-Divine-Might-Beijing-Forbidden.jpg"
+    "imagePath ": "https://cdn.britannica.com/03/198203-050-138BB1C3/entrance-Gate-of-Divine-Might-Beijing-Forbidden.jpg"
   },
   {
     "name": "Sydney",
-    "photoPath": "https://i.natgeofe.com/n/bd48279e-be5a-4f28-9551-5cb917c6766e/GettyImages-103455489cropped.jpg"
+    "imagePath ": "https://i.natgeofe.com/n/bd48279e-be5a-4f28-9551-5cb917c6766e/GettyImages-103455489cropped.jpg"
   },
   {
     "name": "Madrid",
-    "photoPath": "https://cdn.pixabay.com/photo/2017/12/16/01/42/madrid-3021998_1280.jpg"
+    "imagePath ": "https://cdn.pixabay.com/photo/2017/12/16/01/42/madrid-3021998_1280.jpg"
   },
   {
     "name": "Rome",
-    "photoPath": "https://tourismmedia.italia.it/is/image/mitur/20220127150143-colosseo-roma-lazio-shutterstock-756032350-1?wid=1600&hei=900&fit=constrain,1&fmt=webp"
+    "imagePath ": "https://tourismmedia.italia.it/is/image/mitur/20220127150143-colosseo-roma-lazio-shutterstock-756032350-1?wid=1600&hei=900&fit=constrain,1&fmt=webp"
   },
   {
     "name": "Rio de Janeiro",
-    "photoPath": "https://cdn.britannica.com/03/94403-050-03683FB0/Rio-de-Janeiro-Braz.jpg"
+    "imagePath ": "https://cdn.britannica.com/03/94403-050-03683FB0/Rio-de-Janeiro-Braz.jpg"
   },
   {
     "name": "Seoul",
-    "photoPath": "https://cdn.britannica.com/57/75757-050-122EC2ED/Changgyong-Palace-background-Seoul.jpg"
+    "imagePath ": "https://cdn.britannica.com/57/75757-050-122EC2ED/Changgyong-Palace-background-Seoul.jpg"
   },
   {
     "name": "Beijing",
-    "photoPath": "https://media.istockphoto.com/id/482334184/photo/night-on-beijing-central-business-district-buildings-skyline-china-cityscape.jpg?s=612x612&w=0&k=20&c=gd1nunX5dLfHTAyyqTE2frn4Iw-dzyr60YqJGaK2M4U="
+    "imagePath ": "https://media.istockphoto.com/id/482334184/photo/night-on-beijing-central-business-district-buildings-skyline-china-cityscape.jpg?s=612x612&w=0&k=20&c=gd1nunX5dLfHTAyyqTE2frn4Iw-dzyr60YqJGaK2M4U="
   },
   {
     "name": "Dubai",
-    "photoPath": "https://travelbird-images.imgix.net/f2/0b/f20bce73731062f021a0c62b7353fa76?auto=compress%2Cformat&crop=faces%2Cedges%2Ccenter&fit=crop&h=1144&w=828"
+    "imagePath ": "https://travelbird-images.imgix.net/f2/0b/f20bce73731062f021a0c62b7353fa76?auto=compress%2Cformat&crop=faces%2Cedges%2Ccenter&fit=crop&h=1144&w=828"
   },
   {
     "name": "San Jose",
-    "photoPath": "https://traveler.marriott.com/wp-content/uploads/2022/03/downtown-san-jose-california.jpg"
+    "imagePath ": "https://traveler.marriott.com/wp-content/uploads/2022/03/downtown-san-jose-california.jpg"
   }
 ]

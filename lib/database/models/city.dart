@@ -15,9 +15,9 @@ class City {
 
   factory City.fromMap(Map<String, dynamic> map) {
     return City(
-      id: map['id'],
-      name: map['name'],
-      imagePath: map['imagePath'],
+      id: map['id'] as int,
+      name: map['name'] as String? ?? '',
+      imagePath: map['imagePath'] as String? ?? '',
     );
   }
 }
