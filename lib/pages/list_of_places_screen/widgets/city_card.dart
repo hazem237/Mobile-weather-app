@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:weather_flutter_app/database/DatabaseHelper.dart';
 import 'package:weather_flutter_app/services/current_weather_service.dart';
 import 'package:weather_flutter_app/pages/list_of_places_screen/widgets/moreDetailsDialog.dart';
 
 class CityCard extends StatefulWidget {
   final WeatherData weatherData;
+  final Function updateDataCallback;
 
-  const CityCard({required this.weatherData});
+  const CityCard({required this.weatherData, required this.updateDataCallback});
 
   @override
   _CityCardState createState() => _CityCardState();
@@ -81,6 +83,19 @@ class _CityCardState extends State<CityCard> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
+                      IconButton(
+                          onPressed: () async {
+                            try {
+                              await DatabaseProvider.instance
+                                  .deleteCity(widget.weatherData.city);
+                              print('City deleted successfully');
+                              widget.updateDataCallback();
+                            } catch (e) {
+                              print('Error deleting city: $e');
+                            }
+                          },
+                          icon: Icon(Icons.remove_circle),
+                          color: (Colors.red)),
                       Text(
                         '${widget.weatherData.temperature.toString()}°C',
                         style: const TextStyle(

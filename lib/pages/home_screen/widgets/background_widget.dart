@@ -1,39 +1,44 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:weather_flutter_app/provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:ui';
 
-Widget buildBackground(BuildContext context) {
-  final selectedCityProvider = Provider.of<SelectedCityProvider>(context);
-  String backgroundImage =
-      'lib/assets/default_background.jpg'; // Default background image
-
-  // Map city names to corresponding image paths
-  Map<String, String> cityImages = {
-    'Jerusalem': 'lib/assets/Jerusalem.jpg',
-    'Cairo': 'lib/assets/Cairo.jpg',
-    'Beirut': 'lib/assets/Beirut.jpg',
-    'Amman': 'lib/assets/Amman.jpg',
-    'Riyadh': 'lib/assets/Riyadh.jpg',
-  };
-
-  // Check if the selected city has a corresponding image path
-  if (cityImages.containsKey(selectedCityProvider.selectedCity)) {
-    backgroundImage = cityImages[selectedCityProvider.selectedCity]!;
-  }
-
-  return Container(
-    decoration: BoxDecoration(
-      image: DecorationImage(
-        image: AssetImage(backgroundImage),
-        fit: BoxFit.cover,
-      ),
-    ),
-    child: BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-      child: Container(
-        color: Colors.black.withOpacity(0.4),
-      ),
-    ),
+Widget buildBackground(BuildContext context, String imagePath) {
+  return FutureBuilder<ImageProvider>(
+    future: getImage(imagePath),
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return Container(
+          color: Colors.black, 
+        );
+      } else if (snapshot.hasError) {
+        return Container(
+          color: Colors.red, 
+        );
+      } else {
+        return Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: snapshot.data!,
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: Container(
+              color: Colors.black.withOpacity(0.4),
+            ),
+          ),
+        );
+      }
+    },
   );
+}
+
+Future<ImageProvider> getImage(String imagePath) async {
+  final response = await http.get(Uri.parse(imagePath));
+  if (response.statusCode == 200) {
+    return MemoryImage(response.bodyBytes);
+  } else {
+    throw Exception('Failed to load image');
+  }
 }
