@@ -10,7 +10,7 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => SelectedCityProvider(),
-      child: WeatherApp(),
+      child: const WeatherApp(),
     ),
   );
 }
@@ -30,8 +30,8 @@ class WeatherApp extends StatelessWidget {
       routes: {
         '/': (context) => HomeScreen(),
         '/listOfPlaces': (context) => ListOfPlacesScreen(),
-        '/cityDetailedWeather': (context) => CityDetailedWeatherScreen(),
-        '/cityHourlyWeather': (context) => CityHourlyWeatherScreen(),
+        '/cityDetailedWeather': (context) => const CityDetailedWeatherScreen(),
+        '/cityHourlyWeather': (context) => const CityHourlyWeatherScreen(),
       },
     );
   }

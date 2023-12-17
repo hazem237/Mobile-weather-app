@@ -38,8 +38,7 @@ class WeatherService {
       final jsonData = jsonDecode(response.body);
 
       final currentHourEpoch = jsonData['current']['last_updated_epoch'] as int;
-      final forecast =
-          jsonData['forecast']['forecastday'][0]['hour'] as List<dynamic>;
+      final forecast = jsonData['forecast']['forecastday'][0]['hour'] as List<dynamic>;
       final currentHourIndex = forecast.indexWhere((hourData) {
         final hourEpoch = hourData['time_epoch'] as int;
         return hourEpoch >= currentHourEpoch;

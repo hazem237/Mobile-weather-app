@@ -39,7 +39,7 @@ class DayCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     Image.network(
-                      'https:${weatherData.currentConditionIcon}',
+                      'https:${weatherData.forecastConditionIcon}',
                       width: 40,
                       height: 40,
                     ),
@@ -56,7 +56,7 @@ class DayCard extends StatelessWidget {
               children: [
                 const SizedBox(height: 8),
                 Text(
-                  '${weatherData.currentTempC}°C',
+                  '${weatherData.forecastTempC}°C',
                   style: const TextStyle(fontSize: 16),
                 ),
                 Text(

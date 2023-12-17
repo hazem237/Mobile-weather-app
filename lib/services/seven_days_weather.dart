@@ -3,9 +3,7 @@ import 'package:http/http.dart' as http;
 
 class WeatherData {
   final String cityName;
-  final double currentTempC;
-  final String currentConditionText;
-  final String currentConditionIcon;
+  final double forecastTempC;
   final double maxTempC;
   final double minTempC;
   final String forecastConditionText;
@@ -13,9 +11,7 @@ class WeatherData {
 
   WeatherData({
     required this.cityName,
-    required this.currentTempC,
-    required this.currentConditionText,
-    required this.currentConditionIcon,
+    required this.forecastTempC,
     required this.maxTempC,
     required this.minTempC,
     required this.forecastConditionText,
@@ -23,14 +19,11 @@ class WeatherData {
   });
 
   factory WeatherData.fromJson(Map<String, dynamic> json, int index) {
-    final current = json['current'];
     final forecast = json['forecast']['forecastday'][index]['day'];
 
     return WeatherData(
       cityName: json['location']['name'],
-      currentTempC: (current['temp_c']),
-      currentConditionText: current['condition']['text'],
-      currentConditionIcon: current['condition']['icon'],
+      forecastTempC: (forecast['avgtemp_c']),
       maxTempC: (forecast['maxtemp_c']),
       minTempC: (forecast['mintemp_c']),
       forecastConditionText: forecast['condition']['text'],
